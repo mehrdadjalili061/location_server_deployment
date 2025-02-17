@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: location-api-server
+  labels:
+    app: location-api-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: location-api-server
+  template:
+    metadata:
+      labels:
+        app: location-api-server
+    spec:
+      imagePullSecrets:
+        - name: facegram-registery
+      containers:
+        - name: location-api-server
+          image: ""
+          ports:
+            - containerPort: 30002
+          env:
+            - name: NODE_ENV
+              value: "dev"   
+          envFrom:
+            - secretRef:
+                name: grpc-client-configs
+            - secretRef:
+                name: grpc-client-urls   
+            - secretRef:
+                name: mapir-credential 
+            - secretRef:
+                name: sentry-credential
+            - secretRef:
+                name: aes-keys  
+            - secretRef:
+                name: redis-credential                                              
