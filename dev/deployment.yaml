@@ -18,7 +18,7 @@ spec:
         - name: facegram-registery
       containers:
         - name: location-api-server
-          image: cr.fcgm.dev/facegram/location-service:afbf50f5
+          image: cr.fcgm.dev/facegram/location-service:7d5524c9
           ports:
             - containerPort: 30002
           env:
